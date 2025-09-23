@@ -21,39 +21,39 @@ rock_paper_scissors = {
     3: scissors, scissors: 3
 }
 
-def rockpaperscissors_game():
-    Computer_Selection = random.randint(1, 3)
-    Computer_Throw = rock_paper_scissors[Computer_Selection]
+def play():
+    computer_selection = random.randint(1, 3)
+    computer_throw = rock_paper_scissors[computer_selection]
 
-    User_Selection = int(input("Select your throw:\n" \
+    user_selection = int(input("Select your throw:\n" \
         "1. Rock\n" \
         "2. Paper\n" \
         "3. Scissors\n"
     ))
-    User_Throw = rock_paper_scissors[User_Selection]
+    user_throw = rock_paper_scissors[user_selection]
 
-    print("You're throwing", User_Throw)
+    print("You're throwing", user_throw)
     print("Let's see what the computer will try..")
-    print("The computer threw", Computer_Throw)
+    print("The computer threw", computer_throw)
     
-    print(score_throw(User_Throw, Computer_Throw))
+    print(score_throw(user_throw, computer_throw))
 
-def score_throw(My_Throw, Their_Throw):
-    if(My_Throw == Their_Throw): return "It's a tie!"
+def score_throw(my_throw, their_throw):
+    if(my_throw == their_throw): return "It's a tie!"
     elif(
-        My_Throw == rock and Their_Throw == paper
-        or My_Throw == paper and Their_Throw == scissors
-        or My_Throw == scissors and Their_Throw == rock
+        my_throw == rock and their_throw == paper
+        or my_throw == paper and their_throw == scissors
+        or my_throw == scissors and their_throw == rock
         ):
         return "Sorry, you lose."
     elif(
-        My_Throw == rock and Their_Throw == scissors
-        or My_Throw == paper and Their_Throw == rock
-        or My_Throw == scissors and Their_Throw == paper
+        my_throw == rock and their_throw == scissors
+        or my_throw == paper and their_throw == rock
+        or my_throw == scissors and their_throw == paper
         ):
         return "Congratulations, you win!"
     else:
         return "I didn't understand that."
     
 if __name__ == "__main__":
-    rockpaperscissors_game()
+    play()
