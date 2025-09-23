@@ -39,6 +39,7 @@ def play():
     print(score_throw(user_throw, computer_throw))
 
 def score_throw(my_throw, their_throw):
+    """ Find the outcome of a game of rock, paper, scissors. """
     if(my_throw == their_throw): return "It's a tie!"
     elif(
         my_throw == rock and their_throw == paper
@@ -56,4 +57,8 @@ def score_throw(my_throw, their_throw):
         return "I didn't understand that."
     
 if __name__ == "__main__":
-    play()
+    keep_playing = True
+    while keep_playing:
+        play()
+        keep_playing = input("Keep playing? Y/N\n") == "Y"
+    print("Goodbye.")
