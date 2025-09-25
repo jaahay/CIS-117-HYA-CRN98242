@@ -1,8 +1,8 @@
 """
 Lab 1
-Group #12
+Group #5
 Author: James Hay
-Date: 9-18-25
+Date: 2025-09-25
 
 Your function will generate a random number (1, 2, 3) and will ask you to choose a number.
 Depending on the combination of the random number generated and the number you chose,
@@ -22,21 +22,27 @@ rock_paper_scissors = {
 }
 
 def play():
+    """ Play a game of Rock, Paper, Scissors """
+    print("Let's play a game of Rock, Paper, Scissors together!")
     computer_selection = random.randint(1, 3)
     computer_throw = rock_paper_scissors[computer_selection]
 
-    user_selection = int(input("Select your throw:\n" \
-        "1. Rock\n" \
-        "2. Paper\n" \
-        "3. Scissors\n"
-    ))
+    user_selection = int(
+        input(
+            "Select your throw:\n" \
+            "\t1. Rock\n" \
+            "\t2. Paper\n" \
+            "\t3. Scissors\n"
+        )
+    )
     user_throw = rock_paper_scissors[user_selection]
 
-    print("You're throwing", user_throw)
+    print("\tYou're throwing", user_throw)
     print("Let's see what the computer will try..")
-    print("The computer threw", computer_throw)
+    print("\tThe computer threw", computer_throw)
     
     print(score_throw(user_throw, computer_throw))
+    print("Returning to main menu.\n")
 
 def score_throw(my_throw, their_throw):
     """ Find the outcome of a game of rock, paper, scissors. """
@@ -60,5 +66,4 @@ if __name__ == "__main__":
     keep_playing = True
     while keep_playing:
         play()
-        keep_playing = input("Keep playing? Y/N\n") == "Y"
-    print("Goodbye.")
+        keep_playing = input("Keep playing Rock, Paper, Scissors? Y/N\n") == "Y"
