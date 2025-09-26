@@ -29,7 +29,8 @@ def run():
             keep_playing = False
             print("Goodbye!")
         else:
-            print("\tI didn't understand that command.")
+            print("I didn't understand that command.")
+        print("Returning to main menu.\n")
 
 if __name__ == "__main__":
     run()

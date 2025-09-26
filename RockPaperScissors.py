@@ -37,12 +37,11 @@ def play():
     )
     user_throw = rock_paper_scissors[user_selection]
 
-    print("\tYou're throwing", user_throw)
+    print("You're throwing", user_throw)
     print("Let's see what the computer will try..")
-    print("\tThe computer threw", computer_throw)
+    print("The computer threw", computer_throw)
     
     print(score_throw(user_throw, computer_throw))
-    print("Returning to main menu.\n")
 
 def score_throw(my_throw, their_throw):
     """ Find the outcome of a game of rock, paper, scissors. """
@@ -52,13 +51,13 @@ def score_throw(my_throw, their_throw):
         or my_throw == paper and their_throw == scissors
         or my_throw == scissors and their_throw == rock
         ):
-        return "Sorry, you lose."
+        return f"{my_throw} loses to {their_throw}. Sorry, you lost."
     elif(
         my_throw == rock and their_throw == scissors
         or my_throw == paper and their_throw == rock
         or my_throw == scissors and their_throw == paper
         ):
-        return "Congratulations, you win!"
+        return f"{my_throw} beats {their_throw}. Congratulations, you won!"
     else:
         return "I didn't understand that."
     
