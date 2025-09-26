@@ -11,6 +11,7 @@ import RockPaperScissors as rps
 
 def run():
     """ Play games with the User """
+    print("Welcome! Let's have some fun playing games.")
     keep_playing = True
     while keep_playing:
         user_input = int(
@@ -22,15 +23,16 @@ def run():
             )
         )
         if user_input == 1:
-            pass
+            print("Not yet implemented.")
+            print("Returning to main menu.\n")
         elif user_input == 2:
             rps.play()
+            print("Returning to main menu.\n")
         elif user_input == 3:
             keep_playing = False
             print("Goodbye!")
         else:
             print("I didn't understand that command.")
-        print("Returning to main menu.\n")
 
 if __name__ == "__main__":
     run()
