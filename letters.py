@@ -137,7 +137,8 @@ def draw_upper_a(t, n):
     skip(t, n)
     diagonal(t, -n/2, 2*n)
 
-def draw_lower_a(t, n): pass
+def draw_lower_a(t, n):
+    pass
 
 def draw_upper_b(t, n):
     bump(t, n, 1)
@@ -160,7 +161,23 @@ def draw_upper_e(t, n):
     draw_upper_ef(t, n)
     fd(t, n)
 
-def draw_lower_e(t, n): pass
+def draw_lower_e(t, n): 
+    # TODO oooooooooooooooooooo
+    # skip(t, n/2)
+    lt(t)
+    skip(t, n/2)
+    rt(t)
+    fdlt(t, n)
+    arc(t, n/2, 315)
+    pu(t)
+    arc(t, n/2, 45)
+    rt(t)
+    pd(t)
+    rt(t)
+    skip(t, n/2)
+    lt(t)
+    # skip(t, n/2)
+    pass
 
 def draw_upper_f(t, n):
     draw_upper_ef(t, n)
@@ -210,6 +227,7 @@ def draw_upper_m(t, n):
     post(t, 2*n)
 
 def draw_lower_m(t, n):
+    # TODO: smooth the peaks
     draw_upper_m(t, n/2)
 
 def draw_upper_n(t, n):
@@ -300,7 +318,7 @@ TURTLE_UPPERCASE = {
     'C': draw_upper_c,
     'D': draw_upper_d,
     'E': draw_upper_e,
-    'EF': draw_upper_ef,
+    # 'EF': draw_upper_ef, 
     'F': draw_upper_f,
     'G': draw_upper_g,
     'H': draw_upper_h,
@@ -369,10 +387,11 @@ if __name__ == '__main__':
     size = 20
     bob = turtle.Turtle()
 
+    # draw_str('ee', bob, size)
+    draw_str("Jmes", bob, size)
+
+    # draw_str(TURTLE_ALPHABET.keys(), bob, size)
     # draw_str("JAMES", bob, size)
-    draw_str("Jms", bob, size)
-
-
     # draw_upper_hello = [draw_upper_h, draw_upper_e, draw_upper_l, draw_upper_l, draw_upper_o]
     # draw_e_ef_f = [draw_upper_e, draw_upper_ef, draw_upper_f]
     # draw_e_f = [draw_upper_e, draw_upper_f]
