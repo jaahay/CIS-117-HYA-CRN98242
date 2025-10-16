@@ -131,57 +131,57 @@ high.
 
 """
 
-def draw_a(t, n):
+def draw_upper_a(t, n):
     diagonal(t, n/2, 2*n)
     beam(t, n, 1)
     skip(t, n)
     diagonal(t, -n/2, 2*n)
 
-def draw_b(t, n):
+def draw_upper_b(t, n):
     bump(t, n, 1)
     bump(t, n, 0)
     skip(t, n/2)
 
-def draw_c(t, n):
+def draw_upper_c(t, n):
     hangman(t, n, 2)
     fd(t, n)
 
-def draw_d(t, n):
+def draw_upper_d(t, n):
     bump(t, 2*n, 0)
     skip(t, n)
 
-def draw_ef(t, n):
+def draw_upper_ef(t, n):
     hangman(t, n, 2)
     hangman(t, n, 1)
 
-def draw_e(t, n):
-    draw_ef(t, n)
+def draw_upper_e(t, n):
+    draw_upper_ef(t, n)
     fd(t, n)
 
-def draw_f(t, n):
-    draw_ef(t, n)
+def draw_upper_f(t, n):
+    draw_upper_ef(t, n)
     skip(t, n)
 
-def draw_g(t, n):
+def draw_upper_g(t, n):
     hangman(t, n, 2)
     fd(t, n/2)
     beam(t, n/2, 2)
     fd(t, n/2)
     post(t, n)
 
-def draw_h(t, n):
+def draw_upper_h(t, n):
     post(t, 2*n)
     hangman(t, n, 1)
     skip(t, n)
     post(t, 2*n)
 
-def draw_i(t, n):
+def draw_upper_i(t, n):
     beam(t, n, 2)
     fd(t, n/2)
     post(t, 2*n)
     fd(t, n/2)
 
-def draw_j(t, n):
+def draw_upper_j(t, n):
     beam(t, n, 2)
     arc(t, n/2, 90)
     fd(t, 3*n/2)
@@ -189,46 +189,46 @@ def draw_j(t, n):
     rt(t)
     skip(t, n/2)
 
-def draw_k(t, n):
+def draw_upper_k(t, n):
     post(t, 2*n)
     stump(t, n, 180)
     vshape(t, 2*n, 0.5)
     fdlt(t, n)
     skip(t, n)
 
-def draw_l(t, n):
+def draw_upper_l(t, n):
     post(t, 2*n)
     fd(t, n)
 
-def draw_n(t, n):
+def draw_upper_n(t, n):
     post(t, 2*n)
     skip(t, n)
     diagonal(t, -n, 2*n)
     post(t, 2*n)
 
-def draw_m(t, n):
+def draw_upper_m(t, n):
     post(t, 2*n)
-    draw_v(t, n)
+    draw_upper_v(t, n)
     post(t, 2*n)
 
-def draw_o(t, n):
+def draw_upper_o(t, n):
     skip(t, n)
     circle(t, n)
     skip(t, n)
 
-def draw_p(t, n):
+def draw_upper_p(t, n):
     bump(t, n, 1)
     skip(t, n/2)
 
-def draw_q(t, n):
-    draw_o(t, n)
+def draw_upper_q(t, n):
+    draw_upper_o(t, n)
     diagonal(t, -n/2, n)
 
-def draw_r(t, n):
-    draw_p(t, n)
+def draw_upper_r(t, n):
+    draw_upper_p(t, n)
     diagonal(t, -n/2, n)
 
-def draw_s(t, n):
+def draw_upper_s(t, n):
     fd(t, n/2)
     arc(t, n/2, 180)
     arc(t, n/2, -180)
@@ -236,38 +236,38 @@ def draw_s(t, n):
     skip(t, 2*n)
     lt(t)
 
-def draw_t(t, n):
+def draw_upper_t(t, n):
     beam(t, n, 2)
     skip(t, n/2)
     post(t, 2*n)
     skip(t, n/2)
 
-def draw_u(t, n):
+def draw_upper_u(t, n):
     post(t, 2*n)
     fd(t, n)
     post(t, 2*n)
 
-def draw_v(t, n):
+def draw_upper_v(t, n):
     skip(t, n/2)
     vshape(t, n, 2)
     skip(t, n/2)
 
-def draw_w(t, n):
-    draw_v(t, n)
-    draw_v(t, n)
+def draw_upper_w(t, n):
+    draw_upper_v(t, n)
+    draw_upper_v(t, n)
 
-def draw_x(t, n):
+def draw_upper_x(t, n):
     diagonal(t, n, 2*n)
     skip(t, n)
     diagonal(t, -n, 2*n)
 
-def draw_v(t, n):
+def draw_upper_v(t, n):
     skip(t, n/2)
     diagonal(t, -n/2, 2*n)
     diagonal(t, n/2, 2*n)
     skip(t, n/2)
 
-def draw_y(t, n):
+def draw_upper_y(t, n):
     skip(t, n/2)
     stump(t, n)
     vshape(t, n, 1)
@@ -275,7 +275,7 @@ def draw_y(t, n):
     fdlt(t, n)
     skip(t, n/2)
 
-def draw_z(t, n):
+def draw_upper_z(t, n):
     beam(t, n, 2)
     diagonal(t, n, 2*n)
     fd(t, n)
@@ -284,38 +284,69 @@ def draw_(t, n):
     # draw a space
     skip(t, n)
 
-turtle_upper_case = {
-    "A": draw_a,
-    "B": draw_b,
-    "C": draw_c,
-    "D": draw_d,
-    "E": draw_e,
-    "F": draw_f,
-    "G": draw_g,
-    "H": draw_h,
-    "I": draw_i,
-    "J": draw_j,
-    "K": draw_k,
-    "L": draw_l,
-    "M": draw_m,
-    "N": draw_n,
-    "O": draw_o,
-    "P": draw_p,
-    "Q": draw_q,
-    "R": draw_r,
-    "S": draw_s,
-    "T": draw_t,
-    "U": draw_u,
-    "V": draw_v,
-    "W": draw_w,
-    "X": draw_x,
-    "Y": draw_y,
-    "Z": draw_z,
+TURTLE_UPPERCASE = {
+    'A': draw_upper_a,
+    'B': draw_upper_b,
+    'C': draw_upper_c,
+    'D': draw_upper_d,
+    'E': draw_upper_e,
+    'EF': draw_upper_ef,
+    'F': draw_upper_f,
+    'G': draw_upper_g,
+    'H': draw_upper_h,
+    'I': draw_upper_i,
+    'J': draw_upper_j,
+    'K': draw_upper_k,
+    'L': draw_upper_l,
+    'M': draw_upper_m,
+    'N': draw_upper_n,
+    'O': draw_upper_o,
+    'P': draw_upper_p,
+    'Q': draw_upper_q,
+    'R': draw_upper_r,
+    'S': draw_upper_s,
+    'T': draw_upper_t,
+    'U': draw_upper_u,
+    'V': draw_upper_v,
+    'W': draw_upper_w,
+    'X': draw_upper_x,
+    'Y': draw_upper_y,
+    'Z': draw_upper_z,
 }
 
-turtle_lower_case = {
-
+TURTLE_LOWERCASE = {
+    # 'a': draw_lower_a,
+    # 'b': draw_lower_b,
+    # 'c': draw_lower_c,
+    # 'd': draw_lower_d,
+    # 'e': draw_lower_e,
+    # 'ef': draw_lower_ef,
+    # 'f': draw_lower_f,
+    # 'g': draw_lower_g,
+    # 'h': draw_lower_h,
+    # 'i': draw_lower_i,
+    # 'j': draw_lower_j,
+    # 'k': draw_lower_k,
+    # 'l': draw_lower_l,
+    # 'm': draw_lower_m,
+    # 'n': draw_lower_n,
+    # 'o': draw_lower_o,
+    # 'p': draw_lower_p,
+    # 'q': draw_lower_q,
+    # 'r': draw_lower_r,
+    # 's': draw_lower_s,
+    # 't': draw_lower_t,
+    # 'u': draw_lower_u,
+    # 'v': draw_lower_v,
+    # 'w': draw_lower_w,
+    # 'x': draw_lower_x,
+    # 'y': draw_lower_y,
+    # 'z': draw_lower_z,
 }
+
+TURTLE_ALPHABET = { ' ': draw_ }
+TURTLE_ALPHABET.update(TURTLE_LOWERCASE)
+TURTLE_ALPHABET.update(TURTLE_UPPERCASE)
 
 if __name__ == '__main__':
 
