@@ -137,6 +137,8 @@ def draw_upper_a(t, n):
     skip(t, n)
     diagonal(t, -n/2, 2*n)
 
+def draw_lower_a(t, n): pass
+
 def draw_upper_b(t, n):
     bump(t, n, 1)
     bump(t, n, 0)
@@ -157,6 +159,8 @@ def draw_upper_ef(t, n):
 def draw_upper_e(t, n):
     draw_upper_ef(t, n)
     fd(t, n)
+
+def draw_lower_e(t, n): pass
 
 def draw_upper_f(t, n):
     draw_upper_ef(t, n)
@@ -200,15 +204,18 @@ def draw_upper_l(t, n):
     post(t, 2*n)
     fd(t, n)
 
+def draw_upper_m(t, n):
+    post(t, 2*n)
+    draw_upper_v(t, n)
+    post(t, 2*n)
+
+def draw_lower_m(t, n):
+    draw_upper_m(t, n/2)
+
 def draw_upper_n(t, n):
     post(t, 2*n)
     skip(t, n)
     diagonal(t, -n, 2*n)
-    post(t, 2*n)
-
-def draw_upper_m(t, n):
-    post(t, 2*n)
-    draw_upper_v(t, n)
     post(t, 2*n)
 
 def draw_upper_o(t, n):
@@ -235,6 +242,9 @@ def draw_upper_s(t, n):
     fdlt(t, n/2, -90)
     skip(t, 2*n)
     lt(t)
+
+def draw_lower_s(t, n):
+    draw_upper_s(t, n/2)
 
 def draw_upper_t(t, n):
     beam(t, n, 2)
@@ -315,11 +325,11 @@ TURTLE_UPPERCASE = {
 }
 
 TURTLE_LOWERCASE = {
-    # 'a': draw_lower_a,
+    'a': draw_lower_a,
     # 'b': draw_lower_b,
     # 'c': draw_lower_c,
     # 'd': draw_lower_d,
-    # 'e': draw_lower_e,
+    'e': draw_lower_e,
     # 'ef': draw_lower_ef,
     # 'f': draw_lower_f,
     # 'g': draw_lower_g,
@@ -328,13 +338,13 @@ TURTLE_LOWERCASE = {
     # 'j': draw_lower_j,
     # 'k': draw_lower_k,
     # 'l': draw_lower_l,
-    # 'm': draw_lower_m,
+    'm': draw_lower_m,
     # 'n': draw_lower_n,
     # 'o': draw_lower_o,
     # 'p': draw_lower_p,
     # 'q': draw_lower_q,
     # 'r': draw_lower_r,
-    # 's': draw_lower_s,
+    's': draw_lower_s,
     # 't': draw_lower_t,
     # 'u': draw_lower_u,
     # 'v': draw_lower_v,
@@ -348,15 +358,30 @@ TURTLE_ALPHABET = { ' ': draw_ }
 TURTLE_ALPHABET.update(TURTLE_LOWERCASE)
 TURTLE_ALPHABET.update(TURTLE_UPPERCASE)
 
+def draw_str(str, turtle, size):
+    for chr in str:
+        TURTLE_ALPHABET[chr](turtle, size)
+        skip(turtle, size)
+
 if __name__ == '__main__':
 
     # create and position the turtle
     size = 20
     bob = turtle.Turtle()
 
-    # for f in [draw_h, draw_e, draw_l, draw_l, draw_o]:
+    # draw_str("JAMES", bob, size)
+    draw_str("Jms", bob, size)
+
+
+    # draw_upper_hello = [draw_upper_h, draw_upper_e, draw_upper_l, draw_upper_l, draw_upper_o]
+    # draw_e_ef_f = [draw_upper_e, draw_upper_ef, draw_upper_f]
+    # draw_e_f = [draw_upper_e, draw_upper_f]
+    # draw_ef = [draw_upper_ef]
+    # draw = draw_ef
+    # for f in draw:
     #     f(bob, size)
     #     skip(bob, size)
+    # draw_str("HELLO", bob, size)
 
 
 
