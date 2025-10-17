@@ -169,18 +169,17 @@ def draw_upper_e(t, n):
 
 def draw_lower_e(t, n): 
     lt(t)
-    skip(t, n*3/8)
+    skip(t, n/2)
     rt(t)
-    fdlt(t, n*3/4)
-    arc(t, n*3/8, 315)
+    fdlt(t, n*7/8)
+    arc(t, n/2, 315)
     pu(t)
-    arc(t, n*3/8, 45)
+    arc(t, n/2, 45)
     rt(t)
     pd(t)
     rt(t)
-    skip(t, n*3/8)
+    skip(t, n/2)
     lt(t)
-    pass
 
 def draw_upper_f(t, n):
     draw_upper_ef(t, n)
@@ -230,8 +229,15 @@ def draw_upper_m(t, n):
     post(t, 2*n)
 
 def draw_lower_m(t, n):
-    # TODO: smooth the peaks
-    draw_upper_m(t, n/2)
+    lt(t)
+    fd(t, n)
+    bk(t, n*1/4)
+    arc(t, n/4, -180)
+    fdbk(t, n*3/4)
+    lt(t, 180)
+    arc(t, n/4, -180)
+    fd(t, n*3/4)
+    lt(t)
 
 def draw_upper_n(t, n):
     post(t, 2*n)
