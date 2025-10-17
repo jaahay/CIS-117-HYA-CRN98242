@@ -322,7 +322,6 @@ def draw_(t, n):
     skip(t, n)
 
 TURTLE_UPPERCASE = {
-'''Dict of uppercase letter draw functions'''
     'A': draw_upper_a,
     'B': draw_upper_b,
     'C': draw_upper_c,
@@ -352,8 +351,11 @@ TURTLE_UPPERCASE = {
     'Z': draw_upper_z,
 }
 
+def turtle_uppercase():
+    '''Dict of uppercase letter draw functions'''
+    return TURTLE_UPPERCASE
+
 TURTLE_LOWERCASE = {
-'''Dict of lowercase letter draw functions'''
     'a': draw_lower_a,
     # 'b': draw_lower_b,
     # 'c': draw_lower_c,
@@ -383,16 +385,24 @@ TURTLE_LOWERCASE = {
     # 'z': draw_lower_z,
 }
 
-TURTLE_ALPHABET: dict
-'''Turtle alphabet is dict of character turtle draw functions'''
-TURTLE_ALPHABET = { ' ': draw_ }
-TURTLE_ALPHABET.update(TURTLE_LOWERCASE)
-TURTLE_ALPHABET.update(TURTLE_UPPERCASE)
+def turtle_lowercase(): 
+    '''Dict of lowercase letter draw functions'''
+    return TURTLE_LOWERCASE
+
+TURTLE_ALPHABET = dict()
+TURTLE_ALPHABET[' '] = draw_
+TURTLE_ALPHABET.update(turtle_uppercase())
+TURTLE_ALPHABET.update(turtle_lowercase())
+
+def build_turtle_alphabet():
+    '''Turtle alphabet is dict of character turtle draw functions'''
+    return TURTLE_ALPHABET
 
 def draw_str(str, turtle, size):
     '''Draw a string in turtle'''
+    turtle_alphabet = build_turtle_alphabet()
     for chr in str:
-        TURTLE_ALPHABET[chr](turtle, size)
+        turtle_alphabet[chr](turtle, size)
         skip(turtle, size)
 
 if __name__ == '__main__':
