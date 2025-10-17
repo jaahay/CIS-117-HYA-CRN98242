@@ -138,13 +138,10 @@ def draw_upper_a(t, n):
     diagonal(t, -n/2, 2*n)
 
 def draw_lower_a(t, n):
-    # TODO TODO TODO TODO TODO
     lt(t)
     skip(t, 3*n/4)
-    # rt(t, 180)
     arc(t, n/4, -180)
     fd(t, n/2)
-    # circle(t, n/2)
     arc(t, n/4, -360)
     fd(t, n/4)
     lt(t)
@@ -172,21 +169,18 @@ def draw_upper_e(t, n):
     fd(t, n)
 
 def draw_lower_e(t, n): 
-    # TODO oooooooooooooooooooo
-    # skip(t, n/2)
     lt(t)
-    skip(t, n/2)
+    skip(t, n*3/8)
     rt(t)
-    fdlt(t, n)
-    arc(t, n/2, 315)
+    fdlt(t, n*3/4)
+    arc(t, n*3/8, 315)
     pu(t)
-    arc(t, n/2, 45)
+    arc(t, n*3/8, 45)
     rt(t)
     pd(t)
     rt(t)
-    skip(t, n/2)
+    skip(t, n*3/8)
     lt(t)
-    # skip(t, n/2)
     pass
 
 def draw_upper_f(t, n):
