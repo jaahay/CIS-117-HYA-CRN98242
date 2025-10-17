@@ -138,6 +138,16 @@ def draw_upper_a(t, n):
     diagonal(t, -n/2, 2*n)
 
 def draw_lower_a(t, n):
+    # TODO TODO TODO TODO TODO
+    lt(t)
+    skip(t, 3*n/4)
+    # rt(t, 180)
+    arc(t, n/4, -180)
+    fd(t, n/2)
+    # circle(t, n/2)
+    arc(t, n/4, -360)
+    fd(t, n/4)
+    lt(t)
     pass
 
 def draw_upper_b(t, n):
@@ -387,8 +397,10 @@ if __name__ == '__main__':
     size = 20
     bob = turtle.Turtle()
 
+    draw_str("James", bob, size)
     # draw_str('ee', bob, size)
-    draw_str("Jmes", bob, size)
+    # draw_str('aa', bob, 20)
+    
 
     # draw_str(TURTLE_ALPHABET.keys(), bob, size)
     # draw_str("JAMES", bob, size)
