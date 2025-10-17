@@ -14,6 +14,7 @@ from __future__ import print_function, division
 import turtle
 
 from polygon import circle, arc
+from math import atan2, sqrt, pi
 
 # LEVEL 0 PRIMITIVES 
 # fd, bk, lt, rt, pu, pd
@@ -24,10 +25,10 @@ def fd(t, length):
 def bk(t, length):
     t.bk(length)
 
-def lt(t, angle=90):
+def lt(t, angle: float=90):
     t.lt(angle)
 
-def rt(t, angle=90):
+def rt(t, angle: float=90):
     t.rt(angle)
 
 def pd(t):
@@ -99,7 +100,6 @@ def hangman(t, n, height):
 
 def diagonal(t, x, y):
     """Makes a diagonal line to the given x, y offsets and return"""
-    from math import atan2, sqrt, pi
     angle = atan2(y, x) * 180 / pi
     dist = sqrt(x**2 + y**2)
     lt(t, angle)
@@ -145,7 +145,6 @@ def draw_lower_a(t, n):
     arc(t, n/4, -360)
     fd(t, n/4)
     lt(t)
-    pass
 
 def draw_upper_b(t, n):
     bump(t, n, 1)
@@ -279,10 +278,10 @@ def draw_upper_u(t, n):
     fd(t, n)
     post(t, 2*n)
 
-def draw_upper_v(t, n):
-    skip(t, n/2)
-    vshape(t, n, 2)
-    skip(t, n/2)
+# def draw_upper_v(t, n):
+#     skip(t, n/2)
+#     vshape(t, n, 2)
+#     skip(t, n/2)
 
 def draw_upper_w(t, n):
     draw_upper_v(t, n)
