@@ -1,0 +1,17 @@
+repos:
+  - repo: https://github.com/srstevenson/nb-clean
+    rev: 4.0.1 # Or the latest version available
+    hooks:
+      - id: nb-clean
+        # args: [--preserve-cell-metadata, tags, --] # Example: preserve cell tags
+        args:
+          # - clean
+          # - --
+          # -
+          - --remove-empty-cells
+          # - --preserve-cell-metadata
+          # - --preserve-cell-outputs
+          - --preserve-notebook-metadata
+          # - clean
+          - --
+          # - *.ipynb
