@@ -8,33 +8,35 @@ class App(tk.Frame):
 
     def __init__(self, master=None):
         super().__init__(master)
-
-        self.parser = HTMLEmailParser()
-        self.link = 'https://maildiver.com/blog/mailto-links-complete-guide/'
-        self.emails = set()
-
         self.pack()
 
-        self.entrythingy = tk.Entry()
-        self.entrythingy.pack()
+        self.parser = HTMLEmailParser()
 
-        # Create the application variable.
-        self.contents = tk.StringVar()
-        # Set it to some value.
-        self.contents.set("this is a variable")
-        # Tell the entry widget to watch this variable.
-        self.entrythingy["textvariable"] = self.contents
+        self.url_var = tk.StringVar(
+            self,
+            'https://maildiver.com/blog/mailto-links-complete-guide/')
+        self.email_text = tk.Text(self)
+        self.email_text.pack()
 
-        # Define a callback for when the user hits return.
-        # It prints the current value of the variable.
-        self.entrythingy.bind('<Key-Return>',
-                             self.print_contents)
+        go_button = tk.Button(self, text="Go!", command=lambda: go_click(self))
+        go_button.pack()
 
-    def print_contents(self, event):
-        print("Hi. The current entry content is:",
-              self.contents.get())
+        quit_button = tk.Button(self, text="Close", command=lambda: exit(self))
+        quit_button.pack()
+
+def exit(app):
+    app.quit()
+    app.destroy()
         
-    def go(self):
-        resp = urlopen(self.link)
-        html = resp.read().decode().lower()
-        self.parser.feed(html)
+def go_click(app):
+    app.email_text.config(state="normal")
+    app.email_text.delete("1.0", tk.END)
+    url = app.url_var.get()
+    resp = urlopen(url)
+    html = resp.read().decode().lower()
+    app.parser.feed(html)
+    for email in app.parser.emails:
+        app.email_text.insert(tk.INSERT, email)
+    app.email_text.pack()
+
+    
