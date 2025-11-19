@@ -1,15 +1,5 @@
 from html.parser import HTMLParser
-import re
-
-def make_wow_email_regex():
-    '''
-    see: https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression
-    I modified it to prevent things like "?cc=" and "cc=". They will still be captured.
-    '''
-    # return r"(?:[a-z0-9!#$%&'*+\x2f=?^_`\x7b-\x7d~\x2d]+(?:\.[a-z0-9!#$%&'*+\x2f=?^_`\x7b-\x7d~\x2d]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9\x2d]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9\x2d]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9\x2d]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
-    return r"(?:[a-z0-9\x2f\x7b-\x7d~\x2d]+(?:\.[a-z0-9!#$%&'*+\x2f=?^_`\x7b-\x7d~\x2d]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9\x2d]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9\x2d]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9\x2d]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
-
-wow_email_regex = make_wow_email_regex()
+from email_extractor import extract_emails
 
 class MyHTMLParser(HTMLParser):
     
@@ -20,24 +10,23 @@ class MyHTMLParser(HTMLParser):
     """
     def __init__(self):
         super().__init__()
-        self.emails = []
+        self.emails = set()
 
     def handle_starttag(self, tag, attrs):
         if "a" != tag.lower():
             return
-        href = [item for item in attrs if item[0] == "href"]
-        href = href[0]
-        if not href[1].startswith("mailto:"):
-            return
-        self.emails.append(href[1])
+        hrefs = [item for item in attrs if item[0] == "href"]
+        assert len(hrefs) == 1, "duplicate href attributes detected"
+        href = hrefs[0][1]
+        if href is not None:
+            self.emails.update(
+                extract_emails(href)
+            )
 
     def handle_data(self, data):
-        # email_groups = re.finditer(self.email_regex, data)
-        email_groups = re.finditer(wow_email_regex, data)
-        # if email_groups is None:
-        #     return
-        for email in email_groups:
-            self.emails.append(email.group(0))
+        self.emails.update(
+            extract_emails(data)
+        )
 
 if __name__ == '__main__':
     # Fetch and parse the page again
