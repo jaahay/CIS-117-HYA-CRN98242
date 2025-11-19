@@ -1,3 +1,4 @@
+from html.parser import HTMLParser
 import re
 
 def make_wow_email_regex():
@@ -17,3 +18,29 @@ def extract_emails(str):
         re.finditer(wow_email_regex, str)
     )
 
+class HTMLEmailParser(HTMLParser):
+    
+    """
+    A subclass of HTMLParser that collects all text data,
+    filters out tokens containing punctuation, and can report
+    word frequencies and dump raw text to a file.
+    """
+    def __init__(self):
+        super().__init__()
+        self.emails = set()
+
+    def handle_starttag(self, tag, attrs):
+        if "a" != tag.lower():
+            return
+        hrefs = [item for item in attrs if item[0] == "href"]
+        assert len(hrefs) == 1, "duplicate href attributes detected"
+        href = hrefs[0][1]
+        if href is not None:
+            self.emails.update(
+                extract_emails(href)
+            )
+
+    def handle_data(self, data):
+        self.emails.update(
+            extract_emails(data)
+        )

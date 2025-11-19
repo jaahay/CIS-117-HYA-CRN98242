@@ -34,7 +34,7 @@
 <p>After watching the videos in <a title="Week 14 Lesson (GUI)" href="/courses/65722/pages/week-14-lesson-gui?wrap=1" data-api-endpoint="https://smccd.instructure.com/api/v1/courses/65722/pages/week-14-lesson-gui" data-api-returntype="Page">Week 14 Lesson (GUI)</a>, add code to create a GUI for Part 1.</p>
 <p>I recommend you follow the instructions in<span>&nbsp;</span><a class="inline_disabled external" href="https://www.youtube.com/watch?v=_lSNIrR1nZU" target="_blank"><span>Learn Tkinter in 20 minutes</span></a>.</p>
 <h4><strong>Example of a simple window:</strong></h4>
-<p><img src="/courses/65722/files/13816066/preview" alt="GUI email searcher example" width="640" height="230" data-api-endpoint="https://smccd.instructure.com/api/v1/courses/65722/files/13816066" data-api-returntype="File" loading="lazy"></p>
+<p><img src="./GUI_email_searcher.png" alt="GUI email searcher example" width="640" height="230" data-api-endpoint="https://smccd.instructure.com/api/v1/courses/65722/files/13816066" data-api-returntype="File" loading="lazy"></p>
 <p>After clicking SUMIT, the user should see the emails displayed in the bottom window.</p>
 <p><strong>You MUST add a personal touch to your window so it looks different from mine and other students in the class! You may change font, color and/or placement of widgets on the window.</strong></p>
 <p>&nbsp;</p>
