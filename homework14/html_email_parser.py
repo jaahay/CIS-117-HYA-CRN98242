@@ -44,3 +44,6 @@ class HTMLEmailParser(HTMLParser):
         self.emails.extend(
             extract_emails(data)
         )
+
+    def clear(self):
+        self.emails.clear()

@@ -12,15 +12,23 @@ class App(tk.Frame):
         self.pack()
 
         self.parser = HTMLEmailParser()
+        self.init_widgets()
 
+    def init_widgets(self):
         self.url_var = tk.StringVar(
             self,
             'https://maildiver.com/blog/mailto-links-complete-guide/'
         )
         self.url_widget = tk.Entry(self, textvariable=self.url_var)
-        self.url_widget.grid(row=0, column=0)
-        go_button = tk.Button(self, text="Go!", command=lambda: go_click(self))
+        self.url_widget.grid(row=0, column=0, sticky='ew')
+
+        go_button = tk.Button(
+            self,
+            text="Go!",
+            command=lambda: go_button_submit(self)
+            )
         go_button.grid(row=0, column=1)
+
         quit_button = tk.Button(self, text="Close", command=lambda: exit(self))
         quit_button.grid(row=0, column=2)
 
@@ -32,16 +40,17 @@ class App(tk.Frame):
 def exit(app):
     app.quit()
     app.destroy()
-        
-def go_click(app):
-    url = app.url_widget.get()
+
+def go_button_submit(self):
+    self.parser.clear()
+    url = self.url_widget.get()
     resp = urlopen(url)
     html = resp.read().decode().lower()
-    app.parser.feed(html)
-    emails = app.parser.emails
+    self.parser.feed(html)
+    emails = self.parser.emails
 
-    email_widget_change(app.email_widget, emails)
-    email_counter_widget_change(app.email_counter_widget, emails)
+    email_widget_change(self.email_widget, emails)
+    email_counter_widget_change(self.email_counter_widget, emails)
 
 def email_widget_change(email_widget, emails):
     email_widget.config(state="normal")
