@@ -36,6 +36,8 @@ class App(tk.Frame):
         self.email_widget.grid(row=1, column=0)
         self.email_counter_widget = tk.Text(self, wrap=tk.WORD)
         self.email_counter_widget.grid(row=1, column=1)
+        self.response_header_widget = tk.Text(self, wrap=tk.WORD)
+        self.response_header_widget.grid(row=1, column=2)
 
 def exit(app):
     app.quit()
@@ -51,6 +53,7 @@ def go_button_submit(self):
 
     email_widget_change(self.email_widget, emails)
     email_counter_widget_change(self.email_counter_widget, emails)
+    response_header_widget_change(self.response_header_widget, resp.getheaders())
 
 def email_widget_change(email_widget, emails):
     email_widget.config(state="normal")
@@ -60,7 +63,7 @@ def email_widget_change(email_widget, emails):
     email_widget.tag_config("bold_tag", font=("Arial", 12, "bold"))
     for email in emails[:-1]:
         email_widget.insert(tk.INSERT, f"{email}\n")
-    email_widget.insert(tk.INSERT, f"{emails[-1]}\n")
+    email_widget.insert(tk.INSERT, f"{emails[-1]}")
     email_widget.grid(row=1, column=0)
 
 def email_counter_widget_change(email_counter_widget, emails):
@@ -73,9 +76,19 @@ def email_counter_widget_change(email_counter_widget, emails):
     email_counter = Counter(emails)
     for email in email_keys[:-1]:
         count = email_counter.get(email)
-        email_counter_widget.insert(tk.INSERT, f"{count}:\t{email}\n")
+        email_counter_widget.insert(tk.INSERT, f"{email}:\n\t\t{count}\n")
     last_email = email_keys[-1]
-    last_email_count = email_counter[last_email]
-    email_counter_widget.insert(tk.INSERT, f"{last_email_count}:\t{last_email}\n")
+    last_count = email_counter[last_email]
+    email_counter_widget.insert(tk.INSERT, f"{last_email}:\n\t\t{last_count}")
     email_counter_widget.grid(row=1, column=1)
-    
+
+def response_header_widget_change(response_header_widget, headers):
+    response_header_widget.config(state="normal")
+    response_header_widget.delete("1.0", tk.END)
+
+    response_header_widget.insert(tk.INSERT, "Headers\n\n", "bold_tag")
+    response_header_widget.tag_config("bold_tag", font=("Arial", 12, "bold"))
+    for name, value in headers[:-1]:
+        response_header_widget.insert(tk.INSERT, f"{name}:\n\t{value}\n")
+    last_name, last_value = headers[-1]
+    response_header_widget.insert(tk.INSERT, f"{last_name}:\n\t{last_value}")
