@@ -27,7 +27,7 @@ class HTMLEmailParser(HTMLParser):
     """
     def __init__(self):
         super().__init__()
-        self.emails = set()
+        self.emails = []
 
     def handle_starttag(self, tag, attrs):
         if "a" != tag.lower():
@@ -36,11 +36,11 @@ class HTMLEmailParser(HTMLParser):
         assert len(hrefs) == 1, "duplicate href attributes detected"
         href = hrefs[0][1]
         if href is not None:
-            self.emails.update(
+            self.emails.extend(
                 extract_emails(href)
             )
 
     def handle_data(self, data):
-        self.emails.update(
+        self.emails.extend(
             extract_emails(data)
         )
