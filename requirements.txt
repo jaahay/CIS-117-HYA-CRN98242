@@ -2,3 +2,5 @@ otter_grader
 
 pre-commit
 nb-clean
+
+django
