@@ -8,7 +8,7 @@ Libraries represent different websites
 """
 class Library(models.Model):
     page_title = models.CharField(max_length=200)
-    url = models.URLField()
+    url = models.URLField(unique=True)
     
     def __str__(self):
         return self.page_title
@@ -34,8 +34,14 @@ class BookUUID(models.Model):
         validators=[
             MinLengthValidator(13),
             MaxLengthValidator(13)
-        ]
+        ],
+        unique=True
     )
+    url = models.URLField()
+    text_url = models.URLField()
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=200)
+    original_publication = models.CharField(max_length=200)
     format = models.CharField(max_length=200, choices=BookFormat)
     edition = models.CharField(max_length=200)
     pubisher = models.CharField(max_length=200)
@@ -50,9 +56,8 @@ class Book(models.Model):
     """
     uuid = models.ForeignKey(BookUUID, on_delete=models.CASCADE)
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
-    url = models.URLField()
     title = models.CharField(max_length=200)
-    fetched_at = models.DateTimeField()
+    fetched_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.title
