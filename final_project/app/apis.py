@@ -1,6 +1,7 @@
 import json
 
 from django.core import serializers
+from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -9,7 +10,7 @@ from .models import Library, Book, BookUUID, WordSet, Word
 
 from .utils import book_uuid, page_title, calculate_word_frequency, isbn_finder
 
-def rest_libraries(request):
+def libraries(request):
     """
     Create a new library
     """
@@ -18,15 +19,15 @@ def rest_libraries(request):
         library_url = data.get("url")
         title = page_title.get_page_title(library_url)
         library, created = Library.objects.get_or_create(page_title=title, url=library_url)
-        return JsonResponse(serializers.serialize("json", library))
+        return JsonResponse(model_to_dict(library))
 
-def rest_library(request, library_id):
+def library(request, library_id):
     """
     Retrieve a specific library by ID
     """
     return JsonResponse(serializers.serialize("json", Library.objects.get(pk=library_id)))
 
-def rest_books(request):
+def books(request):
     """
     Create a new book
     """
@@ -66,12 +67,12 @@ def rest_books(request):
                 defaults={'frequency': frequency}
             )
         res = {}
-        res["book_uuid"] = serializers.serialize("json", book_uuid_obj)
-        res["book"] = serializers.serialize("json", book_obj)
-        res["word_set"] = serializers.serialize("json", word_set)
+        res["book_uuid"] = model_to_dict(book_uuid_obj)
+        res["book"] = model_to_dict(book_obj)
+        res["word_set"] = model_to_dict(word_set)
         return JsonResponse(res)
 
-def rest_book(request, book_id):
+def book(request, book_id):
     """
     Retrieve a specific book by ID
     """
@@ -93,7 +94,7 @@ def rest_book(request, book_id):
     return JsonResponse(response_data)
 
 @ensure_csrf_cookie
-def rest_csrf(request):
+def csrf(request):
     """ Provide CSRF token
     """
     csrf_token = get_token(request)
