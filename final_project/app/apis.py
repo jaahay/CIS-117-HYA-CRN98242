@@ -10,6 +10,11 @@ from .models import Library, Book, BookUUID, WordSet, Word
 
 from .utils import book_uuid, page_title, calculate_word_frequency, isbn_finder
 
+"""
+AJAX api.
+Currently not being used.
+"""
+
 def libraries(request):
     """
     Create a new library

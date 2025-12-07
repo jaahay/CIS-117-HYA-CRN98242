@@ -1,5 +1,9 @@
 from django import forms
 
+"""
+Entry forms.
+"""
+
 class LibraryForm(forms.Form):
     url = forms.URLField(label='Library URL', max_length=200)
 

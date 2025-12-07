@@ -2,6 +2,10 @@ import json
 from urllib.request import urlopen
 import urllib.parse
 
+"""
+Go out to the www and find (more) details for a book.
+see: ./book_uuid. There is redundancy.
+"""
 def find_isbn(title: str) -> str:
     """
     A utility function to find ISBN based on book title.

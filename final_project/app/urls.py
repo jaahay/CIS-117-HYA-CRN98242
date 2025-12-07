@@ -2,6 +2,9 @@ from django.urls import path
 
 from .views import index, libraries, library, books, book
 
+"""
+RESTful resources.
+"""
 urlpatterns = [
     path("", index, name="index"),
 

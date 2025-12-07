@@ -1,3 +1,6 @@
+"""
+Bunch of words that probably don't help when analyzing book text.
+"""
 filler_words = {
     "i",
     "the",

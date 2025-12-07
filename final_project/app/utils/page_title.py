@@ -1,7 +1,10 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-def get_page_title(url):
+"""
+Find the title of an HTML webpage via a given URL.
+"""
+def get_page_title(url: str) -> str:
     """
     Retrieves the title of a webpage using urllib and BeautifulSoup.
     """

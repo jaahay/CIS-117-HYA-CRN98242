@@ -3,6 +3,11 @@ from collections import Counter
 import re
 from .filler_words import filler_words
 
+"""
+Go out to the www for the text of a book.
+Take the text and tally up word frequency.
+"""
+
 def calculate_word_frequency(url: str) -> dict:
     """
     Given a URL, fetch the content and calculate the frequency of each word.
