@@ -18,7 +18,8 @@ def calculate_word_frequency(url: str) -> dict:
         text = re.sub(r'<[^>]+>', '', html_content)
 
         # Split the text into words using regex to handle punctuation
-        words = re.findall(r'\b\w+\b', text.lower())
+        # words = re.findall(r'\b\w+\b', text.lower())
+        words = text.lower().split()
 
         # Calculate word frequency using Counter
         word_frequency = Counter(word for word in words if word not in filler_words)

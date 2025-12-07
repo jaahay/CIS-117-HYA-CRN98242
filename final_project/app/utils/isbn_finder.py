@@ -10,7 +10,7 @@ def find_isbn(title: str) -> str:
     try:
         fields = "isbn"
         url = f"https://openlibrary.org/search.json?title={urllib.parse.quote(title)}&fields={fields}"
-        print(url);
+        print(url)
         response = urlopen(url)
         html_content = response.read().decode('utf-8')
         data = json.loads(html_content)
