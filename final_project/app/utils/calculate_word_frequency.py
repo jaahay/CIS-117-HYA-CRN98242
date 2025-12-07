@@ -1,6 +1,7 @@
 from urllib.request import urlopen
 from collections import Counter
 import re
+from .filler_words import filler_words
 
 def calculate_word_frequency(url: str) -> dict:
     """
@@ -20,7 +21,7 @@ def calculate_word_frequency(url: str) -> dict:
         words = re.findall(r'\b\w+\b', text.lower())
 
         # Calculate word frequency using Counter
-        word_frequency = Counter(words)
+        word_frequency = Counter(word for word in words if word not in filler_words)
 
         return dict(word_frequency)
 

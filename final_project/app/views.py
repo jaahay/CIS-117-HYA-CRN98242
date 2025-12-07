@@ -60,7 +60,8 @@ def library(request, library_id):
                     defaults={'frequency': frequency}
                 )
             # Additional processing can be done here
-            return HttpResponseRedirect('/app/libraries/' + str(library_id) + '/')
+            print("Book added:", book_obj.title, "to library:", library_id, "with words:", len(words), "unique words.")
+            return HttpResponseRedirect('/app/books/' + str(book_obj.id) + '/')
     return render(request, "app/library.html", {"library": Library.objects.get(pk=library_id)})
 
 def books(request):
