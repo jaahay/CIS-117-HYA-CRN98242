@@ -3,10 +3,10 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 # Create your models here.
 
-"""
-Libraries represent different websites
-"""
 class Library(models.Model):
+    """
+    Libraries represent different websites
+    """
     page_title = models.CharField(max_length=200)
     url = models.URLField(unique=True)
     

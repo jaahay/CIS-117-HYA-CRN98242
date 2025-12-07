@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<table>
+    {% for library in libraries %}
+    <tr>
+        <td><a href="{% url 'library' library.id %}">{{ library.page_title }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br />
+<table>
+    <tr>
+        <form action="" method="post" action="{% url 'libraries' %}">
+            {% csrf_token %}
+            <label for="url">Add New Library URL:</label><br>
+            <input type="text" id="url" name="url"><br><br>
+            <input type="submit" value="Add New Library">
+        </form>
+    </tr>
+</table>
+{% endblock %}

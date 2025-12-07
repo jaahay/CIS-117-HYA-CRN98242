@@ -1,0 +1,44 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Title</th>
+        <td>{{ book.uuid.title }}</td>
+    </tr>
+    <tr>
+        <th>Author</th>
+        <td>{{ book.uuid.author }}</td>
+    </tr>
+    <tr>
+        <th>ISBN</th>
+        <td>{{ book.uuid.isbn }}</td>
+    </tr>
+    <tr>
+        <th>URL</th>
+        <td>{{ book.uuid.url }}</td>
+    </tr>
+    <tr>
+        <th>Text URL</th>
+        <td>{{ book.uuid.text_url }}</td>
+    </tr>
+    <tr>
+        <th>Fetched at</th>
+        <td>{{ book.fetched_at }}</td>
+    </tr>
+</table>
+<table>
+    <ul>
+    {% for word_set in book.wordset_set.all %}
+        <li>
+            <strong>Word Set {{ forloop.counter }}:</strong>
+            <ul>
+                {% for word in word_set.word_set.all|dictsortreversed:"frequency"|slice:"1:11" %}
+                    <li>{{ word.word }}: {{ word.frequency }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</table>
+{% endblock %}

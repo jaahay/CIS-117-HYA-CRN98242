@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
+"""
+Go out to the www and find details for a book
+"""
+
 def parse_book_for_uuid(url: str):
     """
     Parses the HTML content of a book page to extract the UUID (ISBN).
