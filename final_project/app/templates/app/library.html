@@ -10,4 +10,17 @@
     </tr>
     {% endfor %}
 </table>
+<br />
+<table>
+    <tr>
+        <form action="" method="post" action="{% url 'library' library.id %}">
+            {% csrf_token %}
+            <label for="url">Add New Book Main URL:</label><br>
+            <input type="text" id="url" name="url"><br><br>
+            <label for="url">Add New Book Text URL:</label><br>
+            <input type="text" id="url" name="text_url"><br><br>
+            <input type="submit" value="Add New Book">
+        </form>
+    </tr>
+</table>
 {% endblock %}
